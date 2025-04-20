@@ -41,6 +41,8 @@ jobs:
         uses: ./
         with:
           ccache-variant: ccache
+          configure-args: |
+            -DGEODE_DISABLE_PRECOMPILED_HEADERS=OFF
           sdk: nightly
           build-config: RelWithDebInfo
           export-pdb: true
