@@ -126,10 +126,10 @@ runs:
         tarBall: false
         zipBall: false
         out-file-path: "epic-sccache"
-      if: steps.platform.outputs.id == 'mac' && inputs.ccache-variant != ''
+      if: steps.platform.outputs.id == 'mac' && inputs.ccache-variant == 'sccache'
 
     - name: Setup custom sccache
-      if: steps.platform.outputs.id == 'mac' && inputs.ccache-variant != ''
+      if: steps.platform.outputs.id == 'mac' && inputs.ccache-variant == 'sccache'
       shell: bash
       run: |
         7z x "epic-sccache/sccache-*-x86_64-apple-darwin.zip" -o"epic-sccache"
@@ -137,9 +137,8 @@ runs:
         chmod +x "epic-sccache/sccache"
         echo "SCCACHE_CACHE_MULTIARCH=1" >> $GITHUB_ENV
 
-    # https://github.com/hendrikmuhs/ccache-action/pull/182
     - name: Setup sccache
-      uses: chirag-droid/ccache-action@main
+      uses: hendrikmuhs/ccache-action@v1
       with:
         variant: ${{ inputs.ccache-variant }}
         key: ${{ steps.platform.outputs.target_id }}-v1
