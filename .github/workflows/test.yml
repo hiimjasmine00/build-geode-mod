@@ -41,7 +41,6 @@ jobs:
         uses: ./
         with:
           ccache-variant: ccache
-          cli: nightly
           configure-args: |
             -DGEODE_DISABLE_PRECOMPILED_HEADERS=OFF
           sdk: nightly
