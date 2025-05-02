@@ -34,21 +34,19 @@ jobs:
 
       - uses: actions/checkout@v4
         with:
-          repository: geode-sdk/textureldr
-          path: textureldr
+          repository: hiimjasmine00/MoreIcons
+          path: MoreIcons
 
       - name: Build the mod
         uses: ./
         with:
           ccache-variant: ccache
-          configure-args: |
-            -DGEODE_DISABLE_PRECOMPILED_HEADERS=OFF
           sdk: nightly
           build-config: RelWithDebInfo
           export-pdb: true
           bundle-pdb: true
           export-symbols: true
-          path: textureldr
+          path: MoreIcons
           combine: true
           target: ${{ matrix.config.target }}
 
